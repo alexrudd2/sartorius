@@ -9,13 +9,13 @@ from sartorius.mock import Scale
 ADDRESS = 'fakeip:49155'
 
 
-@pytest.fixture()
+@pytest.fixture
 def scale_driver():
     """Confirm the scale correctly initializes."""
     return Scale(ADDRESS)
 
 
-@pytest.fixture()
+@pytest.fixture
 def expected_response():
     """Return mocked scale data."""
     return {'model': 'SIWADCP-1-',

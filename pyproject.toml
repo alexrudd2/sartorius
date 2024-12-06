@@ -60,11 +60,9 @@ target-version = "py310"
 [tool.ruff.lint]
 ignore = [
   "D104",     # Missing docstring in public package
-  "D107",     # Missing docstring in __init__
-  "PT001",    # Use `@pytest.fixture()` over `@pytest.fixture`
 ]
 select = [
-    # "B",   # bandit
+    "B",   # flake8-bugbear
     "C",   # complexity
     "D",   # docstrings
     "E",   # pycodestyle errors
