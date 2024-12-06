@@ -1,13 +1,13 @@
 """Base functionality for async communication.
 
 Distributed under the GNU General Public License v2
-Copyright (C) 2019 NuMat Technologies
 """
+from __future__ import annotations
 
 import asyncio
 import logging
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import serial
 
@@ -23,13 +23,13 @@ class Client(ABC):
         self.open = False
         self.timeout = timeout
         self.max_timeouts = 10
-        self.lock: Optional[asyncio.Lock] = None
+        self.lock: asyncio.Lock | None = None
 
     def close(self) -> None:
         """Close the connection."""
         self.open = False
 
-    async def _write_and_read(self, command: str) -> Optional[str]:
+    async def _write_and_read(self, command: str) -> str | None:
         """Write a command and read a response.
 
         As industrial devices are commonly unplugged, this has been expanded to
@@ -56,7 +56,7 @@ class Client(ABC):
         ...
 
     @abstractmethod
-    async def _handle_communication(self, command: str) -> Optional[str]:
+    async def _handle_communication(self, command: str) -> str | None:
         """Manage communication, including timeouts and logging."""
         ...
 
@@ -66,7 +66,7 @@ class SerialClient(Client):
 
     def __init__(self, address: str, baudrate: int = 9600, timeout: float = .15,
                  bytesize: int = serial.EIGHTBITS,
-                 stopbits: Union[float, int] = serial.STOPBITS_ONE,
+                 stopbits: float | int = serial.STOPBITS_ONE,
                  parity: str = serial.PARITY_ODD):
         """Initialize serial port."""
         super().__init__(timeout)
@@ -88,7 +88,7 @@ class SerialClient(Client):
         """Handle the serial connection status."""
         self.open = True
 
-    async def _handle_communication(self, command: str) -> Optional[str]:
+    async def _handle_communication(self, command: str) -> str | None:
         """Manage communication, including timeouts and logging."""
         try:
             self.ser.write(command.encode())
@@ -124,7 +124,7 @@ class TcpClient(Client):
             raise ValueError('address must be hostname:port') from e
         self.reconnecting = False
         self.timeouts = 0
-        self.connection: Dict[str, Any] = {}
+        self.connection: dict[str, Any] = {}
 
     def close(self) -> None:
         """Close the TCP connection."""
@@ -150,7 +150,7 @@ class TcpClient(Client):
                 logger.error(f'Connecting to {self.address} timed out.')
             self.reconnecting = True
 
-    async def _handle_communication(self, command: str) -> Optional[str]:
+    async def _handle_communication(self, command: str) -> str | None:
         """Manage communication, including timeouts and logging."""
         try:
             self.connection['writer'].write(command.encode() + self.eol)
