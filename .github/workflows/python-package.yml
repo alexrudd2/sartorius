@@ -40,3 +40,6 @@ jobs:
     - name: Pytest
       run: |
         pytest
+
+permissions:
+  contents: read
