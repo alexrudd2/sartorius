@@ -93,3 +93,7 @@ allow_untyped_defs = true
 [tool.pytest.ini_options]
 addopts = "--cov=sartorius"
 asyncio_mode = "auto"
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
