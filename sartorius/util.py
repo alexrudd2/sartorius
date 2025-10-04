@@ -1,6 +1,6 @@
 """Base functionality for async communication.
 
-Distributed under the GNU General Public License v2
+Distributed under the GNU General Public License v2+
 """
 from __future__ import annotations
 

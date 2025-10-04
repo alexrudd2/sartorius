@@ -1,8 +1,7 @@
 """
 A Python driver for Sartorius and Minebea Intec ethernet scales.
 
-Distributed under the GNU General Public License v2
-Copyright (C) 2019 NuMat Technologies
+Distributed under the GNU General Public License v2+
 """
 import logging
 from typing import Any
