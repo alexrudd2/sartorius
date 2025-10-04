@@ -59,7 +59,7 @@ def test_parse(scale_driver, response, expected):
 def test_parse_errors(scale_driver):
     """Test error handling of response parsing code."""
     response = 'X     +   0.1234 g  \r\n'
-    with pytest.raises(ValueError, match='This driver only supports net/gross weight.'):
+    with pytest.raises(ValueError, match=r'This driver only supports net/gross weight.'):
         scale_driver._parse(response)
 
 
