@@ -21,7 +21,7 @@ Installation
 ============
 
 ```
-pip install sartorius
+uv install sartorius
 ```
 
 Scale Setup
