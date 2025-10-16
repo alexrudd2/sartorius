@@ -89,8 +89,8 @@ check_untyped_defs = true
 disallow_untyped_defs = true
 
 [[tool.mypy.overrides]]
-module = ["sartorius.tests"]
-allow_untyped_defs = true
+module = ["tests.*"]
+disallow_untyped_defs = false
 
 [tool.pytest.ini_options]
 addopts = "--cov=sartorius"
