@@ -50,7 +50,7 @@ Homepage = "https://github.com/alexrudd2/sartorius/"
 Issues = "https://github.com/alexrudd2/sartorius/issues"
 
 [tool.setuptools.package-data]
-"huber" = ["py.typed"]
+"sartorius" = ["py.typed"]
 
 [tool.ruff]
 extend-exclude = ["venv*"]
