@@ -97,9 +97,7 @@ class Scale:
         scale is unstable (weight shifting) but filled in when the reading is
         stable. This implementation converts that to a "stable" boolean.
         """
-        if response is None:
-            return {'on': False}
-        elif len(response) != 22:
+        if len(response) != 22:
             logger.error(f"Received malformed data: {response}")
             return {'on': False}
         id = response[:6].strip()
