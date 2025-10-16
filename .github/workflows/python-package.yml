@@ -30,8 +30,8 @@ jobs:
         uv sync --all-extras
     - name: Lint with ruff
       run: uv run ruff check .
-    - name: Check types with mypy
-      run: uv run mypy sartorius
+    - name: Check types with zuban
+      run: uv run zuban mypy
     - name: Pytest
       run: uv run pytest
 

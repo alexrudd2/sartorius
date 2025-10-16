@@ -100,7 +100,7 @@ class SerialClient(Client):
             if self.timeouts == self.max_timeouts:
                 print(f'Reading from {self.address} timed out {self.timeouts} times.')
                 self.close()
-            response = None
+            return None
         return response
 
 
