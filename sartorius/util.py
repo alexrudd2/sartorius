@@ -7,11 +7,28 @@ from __future__ import annotations
 import asyncio
 import logging
 from abc import ABC, abstractmethod
-from typing import Any
+from typing import Any, Literal, TypedDict
 
 import serial
 
 logger = logging.getLogger('sartorius')
+
+class ScaleReading(TypedDict, total=False):
+    """A single reading from the scale."""
+
+    stable: bool
+    units: str
+    mass: float
+    measurement: Literal['net', 'gross']
+    on: Literal[False]
+
+
+class ScaleInfo(TypedDict):
+    """Information about the scale."""
+
+    model: str
+    serial: str
+    software: str
 
 
 class Client(ABC):

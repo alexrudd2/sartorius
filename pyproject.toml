@@ -59,7 +59,8 @@ target-version = "py310"
 
 [tool.ruff.lint]
 ignore = [
-  "D104",     # Missing docstring in public package
+  "D104",  # Missing docstring in public package
+  "W293"   # blank link contains whitespace
 ]
 select = [
     "B",   # flake8-bugbear
@@ -99,3 +100,5 @@ asyncio_mode = "auto"
 [tool.pyright]
 venvPath = "."
 venv = ".venv"
+enableTypeIgnoreComments = true
+typeCheckingMode = "standard"

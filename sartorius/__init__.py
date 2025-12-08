@@ -26,7 +26,7 @@ def command_line(args_list: list | None = None) -> None:
         async with Scale(address=args.address) as scale:
             if args.zero:
                 await scale.zero()
-            d = await scale.get()
+            d: dict = await scale.get()  # type: ignore
             if not args.no_info and d.get('on', True):
                 d['info'] = await scale.get_info()
             print(json.dumps(d, indent=4))

@@ -5,6 +5,7 @@ import pytest
 
 from sartorius import command_line
 from sartorius.mock import Scale
+from sartorius.util import ScaleInfo
 
 ADDRESS = 'fakeip:49155'
 
@@ -16,12 +17,12 @@ def scale_driver():
 
 
 @pytest.fixture
-def expected_response():
+def expected_response() -> ScaleInfo:
     """Return mocked scale data."""
     return {'model': 'SIWADCP-1-',
             'serial': '37454321',
             'software': '00-37-09',
-            'measurement': 'net'}
+            }
 
 
 @mock.patch('sartorius.Scale', Scale)
@@ -53,7 +54,6 @@ def test_parse(scale_driver, response, expected):
     assert result['mass'] == expected[0]
     assert result['units'] == expected[1]
     assert result['stable'] == expected[2]
-    assert result['measurement'] == expected[3]
 
 
 def test_parse_errors(scale_driver):
