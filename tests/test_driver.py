@@ -75,6 +75,6 @@ async def test_readme_example(expected_response):
         async with Scale(ADDRESS) as scale:
             await scale.zero()             # Zero and tare the scale
             response = await scale.get()       # Get mass, units, stability
-            assert response['stable'] is True
+            assert response['stable'] is True  # pyright:ignore[reportTypedDictNotRequiredAccess]
             assert expected_response == await scale.get_info()  # Get model, serial, software
     await get()
