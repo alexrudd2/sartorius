@@ -33,7 +33,7 @@ classifiers = [
 
 [dependency-groups]
 dev = [
-  "pytest",
+  "pytest>=9.0",
   "pytest-cov",
   "pytest-asyncio",
   "ruff==0.14.7",
@@ -92,8 +92,8 @@ disallow_untyped_defs = true
 module = ["tests.*"]
 disallow_untyped_defs = false
 
-[tool.pytest.ini_options]
-addopts = "--cov=sartorius"
+[tool.pytest]
+addopts = ["--cov"]
 asyncio_mode = "auto"
 
 [tool.pyright]
