@@ -3,6 +3,8 @@ A Python driver for Sartorius and Minebea Intec ethernet scales.
 
 Distributed under the GNU General Public License v2+
 """
+from __future__ import annotations
+
 import logging
 from typing import Any
 
@@ -39,7 +41,7 @@ class Scale:
                 address = f'{address}:{port}'
             self.hw = TcpClient(address=address, **kwargs)
 
-    async def __aenter__(self, *args: Any) -> 'Scale':
+    async def __aenter__(self) -> Scale:
         """Provide async enter to context manager."""
         return self
 
