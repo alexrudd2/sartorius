@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sartorius"
-version = "0.6.0"
+version = "0.7.0"
 description="Python driver for Sartorius and Minebea Intec scales."
 license = "GPL-2.0-or-later"
 dependencies = [
