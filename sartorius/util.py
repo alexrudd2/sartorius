@@ -115,7 +115,7 @@ class SerialClient(Client):
         except (serial.SerialTimeoutException, serial.SerialException):
             self.timeouts += 1
             if self.timeouts == self.max_timeouts:
-                print(f'Reading from {self.address} timed out {self.timeouts} times.')
+                logger.error(f'Reading from {self.address} timed out {self.timeouts} times.')
                 self.close()
             return None
         return response
