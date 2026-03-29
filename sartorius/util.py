@@ -31,6 +31,16 @@ class ScaleInfo(TypedDict):
     software: str
 
 
+class SerialDetails(TypedDict):
+    """Serial port configuration."""
+
+    baudrate: int
+    bytesize: int
+    stopbits: float
+    parity: str
+    timeout: float
+
+
 class Client(ABC):
     """Base class for a generic reconnecting client."""
 
@@ -83,18 +93,18 @@ class SerialClient(Client):
 
     def __init__(self, address: str, baudrate: int = 9600, timeout: float = .15,
                  bytesize: int = serial.EIGHTBITS,
-                 stopbits: float | int = serial.STOPBITS_ONE,
+                 stopbits: float = serial.STOPBITS_ONE,
                  parity: str = serial.PARITY_ODD):
         """Initialize serial port."""
         super().__init__(timeout)
         self.address = address
         assert isinstance(self.address, str)
-        self.serial_details = {'baudrate': baudrate,
+        self.serial_details: SerialDetails = {'baudrate': baudrate,
                                'bytesize': bytesize,
                                'stopbits': stopbits,
                                'parity': parity,
                                'timeout': timeout}
-        self.ser = serial.Serial(self.address, **self.serial_details)  # type: ignore [arg-type]
+        self.ser = serial.Serial(self.address, **self.serial_details)
 
     def close(self) -> None:
         """Close the serial connection."""
