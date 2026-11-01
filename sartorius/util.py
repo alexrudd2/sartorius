@@ -172,7 +172,7 @@ class TcpClient(Client):
             if not self.open:
                 await asyncio.wait_for(self._connect(), self.timeout)
             self.reconnecting = False
-        except (asyncio.TimeoutError, OSError):
+        except (TimeoutError, OSError):
             if not self.reconnecting:
                 logger.error(f'Connecting to {self.address} timed out.')
             self.reconnecting = True
@@ -185,7 +185,7 @@ class TcpClient(Client):
             line = await asyncio.wait_for(future, timeout=self.timeout)
             result = line.decode()
             self.timeouts = 0
-        except (asyncio.TimeoutError, TypeError, OSError):
+        except (TimeoutError, TypeError, OSError):
             self.timeouts += 1
             if self.timeouts == self.max_timeouts:
                 logger.error(f'Reading from {self.address} timed out '

@@ -22,7 +22,6 @@ classifiers = [
     "Natural Language :: English",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
@@ -31,6 +30,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Human Machine Interfaces",
     "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)"
 ]
+requires-python = ">=3.11"
 
 [dependency-groups]
 dev = [
@@ -55,7 +55,7 @@ Issues = "https://github.com/alexrudd2/sartorius/issues"
 [tool.ruff]
 extend-exclude = ["venv*"]
 line-length = 99
-target-version = "py310"
+target-version = "py311"
 
 [tool.ruff.lint]
 ignore = [
